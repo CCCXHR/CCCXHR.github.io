@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cccxhr.github.io</id>
-    <title>Gridea</title>
-    <updated>2020-09-09T13:46:37.097Z</updated>
+    <title>CCC_XHR的博客</title>
+    <updated>2020-09-09T14:25:16.562Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cccxhr.github.io"/>
     <link rel="self" href="https://cccxhr.github.io/atom.xml"/>
     <subtitle>幽雅に咲かせ、墨染の桜</subtitle>
     <logo>https://cccxhr.github.io/images/avatar.png</logo>
     <icon>https://cccxhr.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, CCC_XHR的博客</rights>
     <entry>
         <title type="html"><![CDATA[普及2016赛后回顾]]></title>
         <id>https://cccxhr.github.io/post/pu-ji-2016-sai-hou-hui-gu/</id>
