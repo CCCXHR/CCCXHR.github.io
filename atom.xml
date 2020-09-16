@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cccxhr.github.io</id>
     <title>CCC_XHR的博客</title>
-    <updated>2020-09-16T12:35:33.848Z</updated>
+    <updated>2020-09-16T12:42:46.781Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cccxhr.github.io"/>
     <link rel="self" href="https://cccxhr.github.io/atom.xml"/>
@@ -343,6 +343,97 @@ int main()
 <hr>
 <h3 id="t4跳房子">T4.跳房子</h3>
 <p><strong>考场的代码：</strong></p>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;stdlib.h&gt;
+using namespace std;
+#define MAXN 11
+int val[MAXN]; 
+int points[MAXN];
+int main()
+{
+// 	freopen(&quot;jump.in&quot;,&quot;r&quot;,stdin);
+// 	freopen(&quot;jump.out&quot;,&quot;w&quot;,stdout);
+	printf(&quot;-1&quot;);
+	return 0;
+}
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://cccxhr.github.io/post-images/1600259834450.png" alt="" loading="lazy"></figure>
+<p><strong>我的<s>做梦</s>思路</strong><br>
+梦：</p>
+<blockquote>
+<p>共一行，一个整数，表示至少要花多少金币来改造他的机器人。若无论如何他都无法获得至少<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>分，输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>。<br>
+于是我灵机一动，输出-1。</p>
+</blockquote>
+<p>现实：</p>
+<p>WA<sub>WA</sub>WA~（再次强烈谴责 <s>不</s> 良心CCF，说是要输出-1竟然没有一个点要输出-1！！！）</p>
+<figure data-type="image" tabindex="3"><img src="https://cccxhr.github.io/post-images/1600260004860.jpg" alt="" loading="lazy"></figure>
+<p>回归正道，既然不能输出-1，那就看看有没有别的解法。先挂<strong>代码</strong></p>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+using namespace std;
+#define MAXN 500001
+long long val[MAXN]; 
+long long points[MAXN];
+long long dp[MAXN];
+int n,d,k;
+bool ok(int x)
+{
+	/*for(register int i=1;i&lt;=n;++i)
+		dp[i]=-999999;*/
+	memset(dp,-127,sizeof(dp));
+	int left=d-x,right=x+d;//改造完成~
+	if(left&lt;=0)
+		left=1;
+	dp[0]=0;
+	for(register int i=1;i&lt;=n;++i)
+	{
+		for(register int j=i-1;j&gt;=0;--j)
+		{
+			if(val[i]-val[j]&lt;left)
+				continue;
+			if(val[i]-val[j]&gt;right)
+				break;
+			dp[i]=max(dp[i],dp[j]+points[i]);
+			if(dp[i]&gt;=k)
+				return true;
+		}
+// 		printf(&quot;#check : %d %d\n&quot;,i,dp[i]);
+	}
+	return false;
+}
+int main()
+{
+//	freopen(&quot;jump.in&quot;,&quot;r&quot;,stdin);
+//	freopen(&quot;jump.out&quot;,&quot;w&quot;,stdout);
+	scanf(&quot;%lld%lld%lld&quot;,&amp;n,&amp;d,&amp;k);
+	for(register int i=1;i&lt;=n;++i)
+		scanf(&quot;%lld%lld&quot;,&amp;val[i],&amp;points[i]);
+	int left=0,right=1005,mid=(left+right)/2;
+	int ans=0;
+	while(left&lt;=right)
+	{
+		if(ok(mid))
+		{
+// 			printf(&quot;Success: %d %d %d %d\n&quot;,left,right,mid,ans);
+			ans=mid;
+			right=mid-1;
+		}
+		else
+		{	
+// 			printf(&quot;Faild: %d %d %d\n&quot;,left,right,mid);
+			left=mid+1;
+		}
+		mid=(left+right)/2;
+	}
+	printf(&quot;%lld&quot;,ans);
+	return 0;
+}
+</code></pre>
+<p><strong>思路</strong><br>
+二分+动态规划。</p>
 ]]></content>
     </entry>
     <entry>
