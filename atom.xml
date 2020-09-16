@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cccxhr.github.io</id>
     <title>CCC_XHR的博客</title>
-    <updated>2020-09-11T08:35:02.934Z</updated>
+    <updated>2020-09-16T12:22:34.763Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cccxhr.github.io"/>
     <link rel="self" href="https://cccxhr.github.io/atom.xml"/>
@@ -10,6 +10,338 @@
     <logo>https://cccxhr.github.io/images/avatar.png</logo>
     <icon>https://cccxhr.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CCC_XHR的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[2017普及赛后回顾]]></title>
+        <id>https://cccxhr.github.io/post/2017pj/</id>
+        <link href="https://cccxhr.github.io/post/2017pj/">
+        </link>
+        <updated>2020-09-14T09:24:12.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://wws.lanzous.com/b01hoguaj">配合音乐食用更佳</a></p>
+<h3 id="t1成绩">T1.成绩</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;string.h&gt;
+using namespace std;
+int main()
+{
+// 	freopen(&quot;score.in&quot;,&quot;r&quot;,stdin);
+// 	freopen(&quot;score.out&quot;,&quot;w&quot;,stdout);
+	double a,b,c;
+	cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;
+	double ans=0;
+	ans+=a/100*20;
+//	cout&lt;&lt;ans&lt;&lt;endl;
+	ans+=b/100*30;
+//	cout&lt;&lt;ans&lt;&lt;endl;
+	ans+=c/100*50;
+	cout&lt;&lt;(int)ans;
+	return 0;
+}
+</code></pre>
+<p><strong>得分：100</strong></p>
+<p><strong>思路</strong>：<br>
+没什么好讲的，直接模拟就好。注意中间过程要用<code>double</code>。</p>
+<hr>
+<h3 id="t2图书管理员">T2.图书管理员</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;string.h&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+string str[1001];
+bool cmp(string x,string y)
+{
+	if(x.length()!=y.length())
+		return x.length()&lt;y.length();
+	return x&lt;y;
+}
+int main()
+{
+// 	freopen(&quot;librarian.in&quot;,&quot;r&quot;,stdin);
+// 	freopen(&quot;librarian.out&quot;,&quot;w&quot;,stdout);
+	ios::sync_with_stdio(false);
+	int n,q;
+	cin&gt;&gt;n&gt;&gt;q;
+	for(register int i=1;i&lt;=n;++i)
+		cin&gt;&gt;str[i];
+	sort(str+1,str+1+n,cmp);
+	string s;
+	int r,cnt;
+	bool flag;
+	int hhh;
+	for(register int i=1;i&lt;=q;++i)
+	{
+		cin&gt;&gt;hhh&gt;&gt;s;
+		for(register int j=1;j&lt;=n;++j)
+		{
+			flag=false;
+			r=hhh-1;
+			cnt=str[j].size()-1;
+			if(cnt+1&lt;hhh)
+				continue;
+//			cout&lt;&lt;str[j]&lt;&lt;endl;
+			for(register int k=cnt;r&gt;=0;--k)
+			{
+				if(s[r]!=str[j][k])
+				{
+					flag=true;
+					break;
+				}
+				--r;
+			}
+			if(flag==false)
+			{
+				cout&lt;&lt;str[j]&lt;&lt;endl;
+				break;
+			}
+			if(flag==true&amp;&amp;j==n)
+			{
+				cout&lt;&lt;-1&lt;&lt;endl;
+				break;
+			}
+		}
+	}
+	return 0;
+}
+</code></pre>
+<p><strong>得分：100</strong></p>
+<p><strong>思路：</strong><br>
+根据题意模拟，主要就是先排下序，查找的时候遍历每个字符串，从后往前匹配（询问还是正常顺序），找到匹配就可以输出答案，因为排了序，第一个就是答案。<br>
+如果遍历完了还不行的话就无解了，在加一点小小的优化就OK了。</p>
+<hr>
+<h3 id="t3棋盘">T3.棋盘</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;string.h&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int map[101][101];//0:white 1:red 2:yellow
+bool mark[101][101];
+int n,m;
+int ans=2147483647;
+void dfs(int x,int y,int money,bool magic,int fx,int fy)
+{
+	if(mark[x][y])
+		return;
+//	cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;endl;
+	if(money&gt;ans)
+		return;
+	if(x==n&amp;&amp;y==n)
+	{
+		ans=min(ans,money);
+		return;
+	}
+	mark[x][y]=true;
+	if(x&lt;n)
+	{
+		if(map[x+1][y]==0&amp;&amp;magic)
+			dfs(x+1,y,money+2,0,x,y);
+		else if(map[x+1][y]==map[x][y]&amp;&amp;map[x][y]!=0)
+			dfs(x+1,y,money,1,x,y);
+		else if(map[x+1][y]!=map[x][y])
+			if(map[x][y]!=0)
+				dfs(x+1,y,money+1,1,x,y);
+			else
+				if(map[fx][fy]==map[x+1][y])
+					dfs(x+1,y,money,1,x,y);
+				else
+					dfs(x+1,y,money+1,1,x,y);
+	}
+	if(y&lt;n)
+	{
+		if(map[x][y+1]==0&amp;&amp;magic)
+			dfs(x,y+1,money+2,0,x,y);
+		else if(map[x][y+1]==map[x][y]&amp;&amp;map[x][y]!=0)
+			dfs(x,y+1,money,1,x,y);
+		else if(map[x][y+1]!=map[x][y])
+			if(map[x][y]!=0)
+				dfs(x,y+1,money+1,1,x,y);
+			else
+				if(map[fx][fy]==map[x][y+1])
+					dfs(x,y+1,money,1,x,y);
+				else
+					dfs(x,y+1,money+1,1,x,y);
+	}
+	if(x&gt;1)
+	{
+		if(map[x-1][y]==0&amp;&amp;magic)
+			dfs(x-1,y,money+2,0,x,y);
+		else if(map[x-1][y]==map[x][y]&amp;&amp;map[x][y]!=0)
+			dfs(x-1,y,money,1,x,y);
+		else if(map[x-1][y]!=map[x][y])
+			if(map[x][y]!=0)
+				dfs(x-1,y,money+1,1,x,y);
+			else
+				if(map[fx][fy]==map[x-1][y])
+					dfs(x-1,y,money,1,x,y);
+				else
+					dfs(x-1,y,money+1,1,x,y);
+	}
+	if(y&gt;1)
+	{
+		if(map[x][y-1]==0&amp;&amp;magic)
+			dfs(x,y-1,money+2,0,x,y);
+		else if(map[x][y-1]==map[x][y]&amp;&amp;map[x][y]!=0)
+			dfs(x,y-1,money,1,x,y);
+		else if(map[x][y-1]!=map[x][y])
+			if(map[x][y]!=0)
+				dfs(x,y-1,money+1,1,x,y);
+			else
+				if(map[fx][fy]==map[x][y-1])
+					dfs(x,y-1,money,1,x,y);
+				else
+					dfs(x,y-1,money+1,1,x,y);
+	}
+	mark[x][y]=false;
+}
+int main()
+{
+// 	freopen(&quot;chess.in&quot;,&quot;r&quot;,stdin);
+// 	freopen(&quot;chess.out&quot;,&quot;w&quot;,stdout);
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	int x,y,z;
+	for(register int i=1;i&lt;=m;++i)
+	{
+		scanf(&quot;%d%d%d&quot;,&amp;x,&amp;y,&amp;z);
+		map[x][y]=z+1;
+	}
+	dfs(1,1,0,1,1,1);
+	if(ans==2147483647)
+		printf(&quot;-1&quot;);
+	else
+		printf(&quot;%d&quot;,ans);
+	return 0;
+}
+</code></pre>
+<p><strong>赛时思路：</strong><br>
+按照题目疯狂搜索，不走回头路，到达终点就更新答案。对于白色格子的处理直接写挂。</p>
+<p><strong>AC</strong></p>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;string.h&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int map[101][101];//0:white 1:red 2:yellow
+int memory[101][101];
+int _x[4]={1,-1,0,0}, \
+_y[4]={0,0,1,-1};
+int n,m;
+int ans=2147483647;
+void dfs(int x,int y,int money,bool magic)
+{
+//	cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;endl;
+	if(money&gt;=ans||money&gt;=memory[x][y])
+		return;
+	memory[x][y]=money;
+	if(x==n&amp;&amp;y==n)
+	{
+//		cout&lt;&lt;&quot;Hello World\n&quot;;
+		ans=min(ans,money);
+		return;
+	}
+	/*
+	if(x&lt;n)
+	{
+		if(map[x+1][y]==0&amp;&amp;magic)
+			dfs(x+1,y,money+2,0,x,y);
+		else if(map[x+1][y]==map[x][y]&amp;&amp;map[x][y]!=0)
+			dfs(x+1,y,money,1,x,y);
+		else if(map[x+1][y]!=map[x][y])
+			if(map[x][y]!=0)
+				dfs(x+1,y,money+1,1,x,y);
+			else
+				if(map[fx][fy]==map[x+1][y])
+					dfs(x+1,y,money,1,x,y);
+				else
+					dfs(x+1,y,money+1,1,x,y);
+	}
+	*/
+	int nextx,nexty;
+	for(register int i=0;i&lt;4;++i)
+	{
+		nextx=x+_x[i];
+		nexty=y+_y[i];
+//		cout&lt;&lt;nextx&lt;&lt;&quot; &quot;&lt;&lt;nexty&lt;&lt;endl;
+		if(nextx&lt;1||nextx&gt;n||nexty&lt;1||nexty&gt;n)
+			continue;
+		if(map[nextx][nexty]==0)//下一格是白色的，而且还没有用过魔法
+		{
+			if(!magic)//用不了魔法~
+				continue;
+			map[nextx][nexty]=map[x][y];
+			dfs(nextx,nexty,money+2,0);//用不了魔法了~
+			map[nextx][nexty]=0;
+		}
+		else if(map[nextx][nexty]==map[x][y])//颜色一样，不用花钱
+			dfs(nextx,nexty,money,1);
+		else if(map[nextx][nexty]!=map[x][y])//颜色不同，花1金币
+			dfs(nextx,nexty,money+1,1);
+	}
+}
+int main()
+{
+//	freopen(&quot;chess.in&quot;,&quot;r&quot;,stdin);
+//	freopen(&quot;chess.out&quot;,&quot;w&quot;,stdout);
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for(register int i=1;i&lt;=n;++i)
+		for(register int j=1;j&lt;=n;++j)
+			memory[i][j]=2147483647;
+	int x,y,z;
+	for(register int i=1;i&lt;=m;++i)
+	{
+		scanf(&quot;%d%d%d&quot;,&amp;x,&amp;y,&amp;z);
+		map[x][y]=z+1;
+	}
+	dfs(1,1,0,1);
+	if(ans==2147483647)
+		printf(&quot;-1&quot;);
+	else
+		printf(&quot;%d&quot;,ans);
+	return 0;
+}
+</code></pre>
+<p><strong>更改</strong><br>
+除了一些存储部分，基本上推翻重写了</p>
+<p><strong>思路</strong></p>
+<ul>
+<li>对于搜索
+<ul>
+<li>前进方向<br>
+使用数组存储进行优化。x数组是<code>{0,0,1,-1}</code>，y数组是<code>{1,-1,0,0}</code>。每次前进下一次的坐标就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>e</mi><mi>x</mi><msub><mi>t</mi><mi>x</mi></msub><mo>=</mo><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><mi>x</mi><mo separator="true">,</mo><mi>n</mi><mi>e</mi><mi>x</mi><msub><mi>t</mi><mi>y</mi></msub><mo>=</mo><msub><mi>y</mi><mi>i</mi></msub><mo>+</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">next_x=x_i+x , next_y=y_i+y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>。</li>
+<li>格子的特判<br>
+分成了下列的情况：
+<ol>
+<li>白色格子（能够使用魔法）<br>
+白色格子的话重点是修改颜色一定要记得恢复，首先将<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><msub><mi>p</mi><mrow><mi>n</mi><mi>e</mi><mi>x</mi><mi>t</mi><mi>x</mi><mo separator="true">,</mo><mi>n</mi><mi>e</mi><mi>x</mi><mi>t</mi><mi>y</mi></mrow></msub><mo>=</mo><mi>m</mi><mi>a</mi><msub><mi>p</mi><mrow><mi>x</mi><mo separator="true">,</mo><mi>y</mi></mrow></msub></mrow><annotation encoding="application/x-tex">map_{nextx,nexty}=map_{x,y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>。接下来<code>dfs(nextx,nexty,money+2,false)</code>，参数的作用：下一对坐标，金币多用了2枚，下一次不能使用魔法。值得注意的是，除了下一个格子是白色的情况，其它不管当前魔法是否能使用，下一步一定能使用魔法。</li>
+<li>颜色相同<br>
+如果颜色相同，那么不用额外的花费也不需要修改，可以直接搜索。即<code>dfs(nextx,nexty,money,true)</code></li>
+<li>颜色不同<br>
+不需要做额外的修改，但是需要额外花费一枚金币。<code>dfs(nextx,nexty,money+1,true)</code></li>
+</ol>
+</li>
+<li>记忆化搜索<br>
+考场时没想到这一重优化，直接导致TLE。思路其实很简单，就是记录一下<strong>从起点到当前这个点的最小花费</strong>。（讲真，这玩意可以代替<code>ans</code>变量。我为啥还要那货······）</li>
+<li>剪枝优化<br>
+记忆化搜索就是为这个准备的。条件是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>o</mi><mi>n</mi><mi>e</mi><mi>y</mi><mo>≥</mo><mi>m</mi><mi>e</mi><msub><mi>m</mi><mrow><mi>x</mi><mo separator="true">,</mo><mi>y</mi></mrow></msub></mrow><annotation encoding="application/x-tex">money \geq mem_{x,y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>o</mi><mi>n</mi><mi>e</mi><mi>y</mi><mo>≥</mo><mi>m</mi><mi>e</mi><msub><mi>m</mi><mrow><mi>x</mi><mo separator="true">,</mo><mi>y</mi></mrow></msub></mrow><annotation encoding="application/x-tex">money \geq mem_{x,y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> ，那么无论如何优化，这次搜索得到的答案也肯定无法更新最优解。既然更新不了，我还搜它作甚？剪掉！✂</li>
+<li><s>亿</s>一些注意事项
+<ul>
+<li>记忆数组初始要赋为无穷大！</li>
+<li>白色格子变更后<strong>一定要重置</strong>！</li>
+<li>一定要判断有没有出界！</li>
+<li>初始的时候能用魔法！</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[普及2016赛后回顾]]></title>
         <id>https://cccxhr.github.io/post/pj2016/</id>
