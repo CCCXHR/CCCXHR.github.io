@@ -1,152 +1,142 @@
 <html>
-  <head>
-    
-<meta charset="utf-8" >
-
-<title>CCC_XHR的博客</title>
-<meta name="description" content="CCC_XHR的小屋">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://cccxhr.github.io/favicon.ico?v=1600332574119">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://cccxhr.github.io/styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://cccxhr.github.io">
-        <img class="avatar" src="https://cccxhr.github.io/images/avatar.png?v=1600332574119" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://cccxhr.github.io">
-        <h1 class="site-title">CCC_XHR的博客</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
+      <head>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+        <meta charset="utf-8">
+        <meta name="referrer" content="never">
+        <title>CCC_XHR的博客</title>
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css">
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cccxhr.github.io/styles/main.css">
+          <script src="https://cccxhr.github.io/media/scripts/mdui.min.js"></script>
+        <link rel="stylesheet" href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css">
+        <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Ma+Shan+Zheng&display=swap" rel="stylesheet">
+        <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+        <script src="https://cccxhr.github.io/media/scripts/script.js"></script>
+        <script >hljs.initHighlightingOnLoad();</script>
         
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
 
+    </head>
+    <body class="mdui-theme-primary-purple mdui-theme-accent-purple">
+        <header class="header mdui-m-b-3">
+                          <button class="mdui-btn daohang mdui-btn-icon mdui-btn-dense mdui-color-theme-500 mdui-ripple yinying mdui-m-t-1 mdui-m-l-1" mdui-menu="{target: '#demo-attr-cascade'}"><i class="mdui-icon material-icons">&#xe5d2;</i></button>
+                <ul class="mdui-menu " id="demo-attr-cascade">
+                
+                        <li class="mdui-menu-item">
+                          <a href="/" class="mdui-ripple">首页</a>
+                        </li>
+                
+                        <li class="mdui-menu-item">
+                          <a href="/archives" class="mdui-ripple">归档</a>
+                        </li>
+                
+                        <li class="mdui-menu-item">
+                          <a href="/tags" class="mdui-ripple">标签</a>
+                        </li>
+                
+                        <li class="mdui-menu-item">
+                          <a href="/post/about" class="mdui-ripple">关于</a>
+                        </li>
+                
+                      </ul>
+                      <div class="mdui-text-center">
+                      <div class="mdui-typo-display-4 mdui-m-b-3 index-title">CCC_XHR的博客</div>
+                      <div class="mdui-typo-headline">CCC_XHR的小屋</div>
+                      </div>
 
-        <div class="content-container">
-          
-          
-
-<div class="archives-container">
+        </header>
+        <div class="mdui-container">
+                <div class="mdui-row">
+                        <div class="mdui-col-md-10 mdui-col-offset-md-1 ">
+ 
+                           
   
-    <h2 class="year">2020</h2>
-    
-      
-        <article class="post">
-          <a href="https://cccxhr.github.io/post/2017pj/">
-            <h2 class="post-title">
-              2017普及赛后回顾
-              <small>2020-09-14</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://cccxhr.github.io/post/pj2016/">
-            <h2 class="post-title">
-              普及2016赛后回顾
-              <small>2020-09-09</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-  
-</div>
+   
 
 
+
+                               <div class="mdui-typo-display-1 mdui-m-b-2 mdui-m-l-1">
+                               <div class="mdui-row"><div class="mdui-col-xs-12">2020</div>
+                               </div>
+                                <div class="mdui-row-md-3 mdui-row-xs-1">
+                               
+        
+                                    <div class="mdui-col mdui-p-a-1">
+                                       <article class="archives-list mdui-shadow-15  mdui-hoverable ">
+                                           <a href="https://cccxhr.github.io/post/2017pj/">
+                                           <div class="archives-img"  style="background-image:url(https://cccxhr.github.io/post-images/2017pj.png" >
+                                           </div>
+                                           <div class="mdui-p-a-2">
+                                           <div class="mdui-typo-headline mdui-text-truncate index-list-title">2017普及赛后回顾</div>
+                                           <div class="mdui-typo-title mdui-m-t-1 mdui-text-color-blue-grey-200">2020-09-14</div>
+                                           </div>
+                                        </a>
+                                       </article> 
+                                    </div>
+                                    
+             
+            
+        
+                                    <div class="mdui-col mdui-p-a-1">
+                                       <article class="archives-list mdui-shadow-15  mdui-hoverable ">
+                                           <a href="https://cccxhr.github.io/post/pj2016/">
+                                           <div class="archives-img"  style="background-image:url(https://cccxhr.github.io/post-images/pj2016.png" >
+                                           </div>
+                                           <div class="mdui-p-a-2">
+                                           <div class="mdui-typo-headline mdui-text-truncate index-list-title">普及2016赛后回顾</div>
+                                           <div class="mdui-typo-title mdui-m-t-1 mdui-text-color-blue-grey-200">2020-09-09</div>
+                                           </div>
+                                        </a>
+                                       </article> 
+                                    </div>
+                                    
+             
+            
+              
+                                  </div>
+                                    <nav class="mdui-m-y-3">
+                         
+                         
+                         </nav>
+                         
+                        </div>
+                 </div>
+          </div>
+          </div>
         </div>
-
-        <div class="site-footer">
-  <div class="slogan">CCC_XHR的小屋</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  幽雅に咲かせ、墨染の桜 | <a class="rss" href="https://cccxhr.github.io/atom.xml" target="_blank">RSS</a>
-</div>
-
-
-      </div>
-      <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
-</script>
-
-
-
-
-    </div>
-  </body>
+         </div>
+        <footer class="footer mdui-m-t-5 mdui-text-center">
+               <nav class="social-links">
+                      <ul>
+                      
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                            
+                           
+                      </ul>
+                    </nav>
+                  <div class="copyright">
+                      <p>幽雅に咲かせ、墨染の桜</p>
+                  </div>
+              </footer>
+    </body>
 </html>
